@@ -1,6 +1,6 @@
 # WinPy -- formerly Validate.R in Python
 # Author: Dustin Landers
-# Contact: (770 289-8830 :: dustin.landers@gmail.com
+# Contact: (770 289-8830) :: dustin.landers@gmail.com
 
 
 """Dependencies"""
@@ -9,6 +9,7 @@ from fileimport import *
 from checkhidden import *
 from gwas import *
 import numpy as np
+import doctest
 
 
 """Main function and execution"""
@@ -17,8 +18,8 @@ def main():
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper, severity = checkArgs()
 	appOutputList = checkList(getList(folder))
 	ktFile = loadKT(truth, kttypeseper)
-
-
+	
+	"""Runs the following code if the known-truth file is in OTE format: only truth and effect"""
 	if kttype == "OTE":
 		acquiredData = loadFile(folder, appOutputList[0], seper)
 		snpColumnNo = acquiredData.header.index(snp)
@@ -73,6 +74,9 @@ def main():
 				betaColumn.append(float(each[1][betaColumnNo]))
 
 		if analysis == "GWAS" and firstForHeader:
+			"""Currently, only GWAS analysis is supported. 
+			Prediction algorithms for SNPs will be included in 
+			later versions of the software"""
 			if beta is not None:
 				keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
 				writeCSV(filename, keepToWrite, "wb", "\t")

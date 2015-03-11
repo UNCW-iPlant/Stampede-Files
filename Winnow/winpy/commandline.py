@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 """ 
 Functions for indentifying and using the command-line to execute Winnow for Python
 """
 
 
 """Dependencies"""
-import getopt, sys
+import getopt, sys, doctest
 
 """Functions to be used later in the software"""
 # Prints introduction graphics for every time the software is run
@@ -50,14 +51,23 @@ def checkArgs():
 		sys.exit()
 
 	# Specifiying initial values of needed variables; unneeded specification when desiring defaults
-	verbose = False
+	verbose = False 
+	"""Tells the program whether or not to enter verbose mode, which displays the inputs and parameters as they are specified"""
 	analysis = "GWAS"
+	"""GWAS is the only analysis option available currently; prediction mode forthcoming in later versions"""
 	filename = "Results"
 	threshold = 0.05
+	"""Threshold for determining Pvalue of correctly identified SNPs. Set at the standard significance level of 0.05; however,
+	please note this default threshold does not take multiple test corrections into account!"""
 	seper = "whitespace"
+	"""Two options for delimiting input data: whitespace or comma"""
 	kttype = "OTE"
+	"""For the format of the known-truth file, OTE stands for “Only Truth and Effect.” As the name implies, such a file only contains 
+	the SNPs with effects and the values of those effects. FGS stands for “Full Genome Set,” and this file type lists every SNP with their effects. 
+	Both file formats can be arranged with either two rows or two columns."""  
 	kttypeseper = "whitespace"
-
+        """Similar to input data separation, the known-truth file has two options: whitespace or comma"""
+        
 	# Looping through command-line arguments to replace and/or create initialized values
 	for o in opts:
 		if o[0] in ("--help", "-h"):
@@ -143,13 +153,16 @@ def checkArgs():
 		usage()
 		sys.exit()
 
-	# Setting beta equal to null if not used; this will placehold the need to not run beta analyses
+	"""Setting beta equal to null if not used; this will placehold the need to not run beta analyses
+	NOTE: The beta corresponds to the effect size columns for SNPs found in the initial GWAS analysis"""
 	try:
 		beta
 	except NameError:
 		beta = None
 
-	# Setting severity equal to null if not used
+	"""Severity ratio was originally included in the options for the proposed but unused H-measure fit statistic. Currently, the H-measure is not
+	in the list of fit statistics, but once a formula can be implemented in Python, it will be shown in the command line options. 
+	For now, we will leave this as the default None.""" 
 	try:
 		severity
 	except NameError:
