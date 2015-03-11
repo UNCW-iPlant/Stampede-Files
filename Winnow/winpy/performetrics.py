@@ -2,33 +2,35 @@
 Performance measures for testing applications in Winnow
 """
 
-
 import numpy as np
 import pandas as pd
 from scipy import stats
 import doctest
 
-#Root mean squared error
+
 def rmse(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
 	betaTrueFalse = np.array(betaTrueFalse)
 	return np.mean(np.square(np.subtract(betaColumn, betaTrueFalse)))
-""">>>betaColumn=np.array(1,2,3,4,5,6)
->>>betaTrueFalse=np.array("""
+"""Returns the root mean squared error given the known truth and effects
+>>>betaColumn=np.array(1,2,3,4,5,6)
+>>>
+"""
 
 
-#Mean Absolute Error
+
 def mae(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
 	betaTrueFalse = np.array(betaTrueFalse)
 	return np.mean(np.absolute(np.subtract(betaColumn, betaTrueFalse)))
-
-
+"""Returns the mean absolute error of the dataset
+"""
 def r(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
 	betaTrueFalse = np.array(betaTrueFalse)
 	return stats.stats.pearsonr(betaColumn, betaTrueFalse)[0]
-"""Produces the correlation coefficient
+"""Returns the correlation coefficient between the known-truth effects
+and the detected true/false effects.
 >>>x=[1,2,3,4,5]
 >>>y=[5,9,10,12,13]
 >>>r(x,y)
@@ -38,7 +40,10 @@ def r2(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
 	betaTrueFalse = np.array(betaTrueFalse)
 	return np.square(stats.stats.pearsonr(betaColumn, betaTrueFalse)[0])
-"""Produces the coefficient of determination
+"""Produces the coefficient of determination (AKA 
+the correlation coefficient squared); gives the percentage of variation accounted for 
+by the relationship between the given variables
+
 >>>x=[3,4,5,6,7]
 >>>y=[9,10,13,12,18]
 >>>r2(x,y)
@@ -55,7 +60,8 @@ def auc(snpTrueFalse, scoreColumn):
 	r = stats.rankdata(np.hstack((x1,x2)))
 	auc = (np.sum(r[0:n1]) - n1 * (n1+1)/2) / (n1 * n2)
 	return 1 - auc
-"""Defines the area under the reciever-operator curve
+"""Returns the area under the reciever-operator curve for binary classification (i.e. whether
+a SNP was part of the known-truth list or not)
 >>>
 >>>
 >>>
@@ -75,8 +81,10 @@ def tp(snpTrueFalse, threshold, scoreColumn):
 			truePositives += 1
 		count += 1
 	return truePositives
+"""Returns the total number of SNPs correctly identified as significant from the analysis
 
 
+"""
 def fp(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
 	for each in scoreColumn:
@@ -91,7 +99,9 @@ def fp(snpTrueFalse, threshold, scoreColumn):
 			falsePositives += 1
 		count += 1
 	return falsePositives
+"""Returns the number of SNPs incorrectly identified as significant
 
+"""
 
 def tn(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
@@ -107,8 +117,8 @@ def tn(snpTrueFalse, threshold, scoreColumn):
 			trueNegatives += 1
 		count += 1
 	return trueNegatives
-
-
+"""Returns the number of SNPs correctly identified as not significant
+"""
 def fn(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
 	for each in scoreColumn:
@@ -123,7 +133,7 @@ def fn(snpTrueFalse, threshold, scoreColumn):
 			falseNegatives += 1
 		count += 1
 	return falseNegatives
-
+"""Returns the number of SNPs incorrectly identified as not significant"""
 
 def tpr(snpTrueFalse, threshold, scoreColumn):
 	truePositives = tp(snpTrueFalse, threshold, scoreColumn)
@@ -132,7 +142,7 @@ def tpr(snpTrueFalse, threshold, scoreColumn):
 		if each is True:
 			count += 1.0
 	return float(truePositives/count)
-
+"""The proportion of true positives identified from the entire dataset"""
 
 def fpr(snpTrueFalse, threshold, scoreColumn):
 	falsePositives = fp(snpTrueFalse, threshold, scoreColumn)
@@ -141,15 +151,16 @@ def fpr(snpTrueFalse, threshold, scoreColumn):
 		if each is False:
 			count += 1.0
 	return float(falsePositives/count)
-
-
+"""Returns the proportion of false positives identified from the dataset
+"""
 def error(snpTrueFalse, threshold, scoreColumn):
 	truePositives = float(tp(snpTrueFalse, threshold, scoreColumn))
 	falsePositives = float(fp(snpTrueFalse, threshold, scoreColumn))
 	trueNegatives = float(tn(snpTrueFalse, threshold, scoreColumn))
 	falseNegatives = float(fn(snpTrueFalse, threshold, scoreColumn))
 	return (falseNegatives + falsePositives) / (truePositives + trueNegatives + falsePositives + falseNegatives)
-"""Returns the error value of the analysis (NOT standard error!)
+"""Returns the error value of the analysis (NOT standard error!) defined as the number of false identifications,
+positive or negative, by the total number identified
 >>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
 >>>threshold=0.05
 >>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
@@ -161,10 +172,13 @@ def sens(snpTrueFalse, threshold, scoreColumn):
 	truePositives = float(tp(snpTrueFalse, threshold, scoreColumn))
 	falseNegatives = float(fn(snpTrueFalse, threshold, scoreColumn))
 	return truePositives / (truePositives + falseNegatives)
-"""Returns the sensitivty value of the analysis
+"""Returns the sensitivty value of the analysis;
+defined as the number of correctly identified positives divided by the total number of known-truth positives
+
 >>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
 >>>threshold=0.05
 >>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
+>>>sens(snpTF, threshold, score)
 
 """
 
@@ -172,19 +186,26 @@ def spec(snpTrueFalse, threshold, scoreColumn):
 	trueNegatives = float(tn(snpTrueFalse, threshold, scoreColumn))
 	falsePositives = float(fp(snpTrueFalse, threshold, scoreColumn))
 	return trueNegatives / (trueNegatives + falsePositives)
+"""Returns the specificity value; defined as the number of correctly identified negatives divided by the
+total number of known-truth negatives
 
+>>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
+>>>threshold=0.05
+>>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
 
+"""
 def precision(snpTrueFalse, threshold, scoreColumn):
 	truePositives = float(tp(snpTrueFalse, threshold, scoreColumn))
 	falsePositives = float(fp(snpTrueFalse, threshold, scoreColumn))
 	return truePositives / (truePositives + falsePositives)
+"""Returns the precision; defined as the number of correctly identified positives divided by the total identified positives
 
-
+"""
 def youden(snpTrueFalse, threshold, scoreColumn):
 	sensitivity = float(sens(snpTrueFalse, threshold, scoreColumn))
 	specificity = float(spec(snpTrueFalse, threshold, scoreColumn))
 	return sensitivity + specificity - 1.0
-"""Returns the Youden statistic
+"""Returns the Youden statistic for the data
 >>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
 >>>threshold = 0.05
 >>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
