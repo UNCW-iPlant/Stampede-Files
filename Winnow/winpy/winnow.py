@@ -14,6 +14,7 @@ import doctest
 
 """Main function and execution"""
 def main():
+        """See docstrings in commandline.py and performetrics.py for additional information"""
 	initializeGraphics()
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper, severity = checkArgs()
 	appOutputList = checkList(getList(folder))
