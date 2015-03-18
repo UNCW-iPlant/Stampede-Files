@@ -19,7 +19,7 @@ def main():
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper, severity = checkArgs()
 	appOutputList = checkList(getList(folder))
 	ktFile = loadKT(truth, kttypeseper)
-	
+	""">>>usage()"""
 	"""Runs the following code if the known-truth file is in OTE format: only truth and effect"""
 	if kttype == "OTE":
 		acquiredData = loadFile(folder, appOutputList[0], seper)
@@ -85,14 +85,15 @@ def main():
 				keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
 				writeCSV(filename, keepToWrite, "wb", "\t")
 		else:
-			if beta is not None:
-				keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
-				writeCSV(filename, keepToWrite, "a", "\t")
-			if beta is None:
-				keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
-				writeCSV(filename, keepToWrite, "a", "\t")
+		    """Fit statistics calculated from Winnow vary depending on whether or not
+		    a beta/effect size column was named in the input data"""
+		    if beta is not None:
+		        keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
+		        writeCSV(filename, keepToWrite, "a", "\t")
+		    if beta is None:
+		        keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
+		        writeCSV(filename, keepToWrite, "a", "\t")
 		firstForHeader = False
-
 
 if __name__ == "__main__":
 	main()

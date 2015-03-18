@@ -13,8 +13,10 @@ def rmse(betaColumn, betaTrueFalse):
 	betaTrueFalse = np.array(betaTrueFalse)
 	return np.mean(np.square(np.subtract(betaColumn, betaTrueFalse)))
 """Returns the root mean squared error given the known truth and effects
->>>betaColumn=np.array(1,2,3,4,5,6)
->>>
+>>>betaColumn=np.array([1,2,3,4,5,6])
+>>>betaTF=np.array([1,0,1,1,0,0])
+>>>rmse(betaCol, betaTF)
+
 """
 
 
@@ -65,7 +67,7 @@ a SNP was part of the known-truth list or not)
 >>>
 >>>
 >>>
->>
+>>>
 """
 def tp(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
