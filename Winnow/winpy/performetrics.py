@@ -16,16 +16,18 @@ def rmse(betaColumn, betaTrueFalse):
 >>>betaColumn=np.array([1,2,3,4,5,6])
 >>>betaTF=np.array([1,0,1,1,0,0])
 >>>rmse(betaCol, betaTF)
-
+13.0
 """
-
-
 
 def mae(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
 	betaTrueFalse = np.array(betaTrueFalse)
 	return np.mean(np.absolute(np.subtract(betaColumn, betaTrueFalse)))
 """Returns the mean absolute error of the dataset
+>>>betaColumn=np.array([1,2,3,4,5,6])
+>>>betaTF=np.array([1,0,1,1,0,0])
+>>>mae(betaCol, betaTF)
+
 """
 def r(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
@@ -62,7 +64,7 @@ def auc(snpTrueFalse, scoreColumn):
 	r = stats.rankdata(np.hstack((x1,x2)))
 	auc = (np.sum(r[0:n1]) - n1 * (n1+1)/2) / (n1 * n2)
 	return 1 - auc
-"""Returns the area under the reciever-operator curve for binary classification (i.e. whether
+"""Returns the area under the reciever-operator curve for binary classification (i.e. true/false on whether
 a SNP was part of the known-truth list or not)
 >>>
 >>>
@@ -84,8 +86,11 @@ def tp(snpTrueFalse, threshold, scoreColumn):
 		count += 1
 	return truePositives
 """Returns the total number of SNPs correctly identified as significant from the analysis
-
-
+>>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
+>>>threshold=0.05
+>>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
+tp(snpTF, threshold, score)
+5
 """
 def fp(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
@@ -102,6 +107,9 @@ def fp(snpTrueFalse, threshold, scoreColumn):
 		count += 1
 	return falsePositives
 """Returns the number of SNPs incorrectly identified as significant
+>>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
+>>>threshold=0.05
+>>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
 
 """
 
