@@ -22,7 +22,7 @@ class Data:
 				self.data, self.n = self.whitespace()
 			elif self.seper == "comma":
 				self.data, self.n = self.comma()
-        """The following two functions establish the possible options for delimiters: whitespace or comma"""
+        """    The following two functions establish the possible options for delimiters: whitespace or comma"""
 	def whitespace(self):
 	    f = open(self.filelocation, "rb")
 	    temp = list()
