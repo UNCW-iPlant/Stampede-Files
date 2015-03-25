@@ -27,7 +27,7 @@ def mae(betaColumn, betaTrueFalse):
 >>>betaColumn=np.array([1,2,3,4,5,6])
 >>>betaTF=np.array([1,0,1,1,0,0])
 >>>mae(betaCol, betaTF)
-
+3.0
 """
 def r(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
@@ -47,7 +47,6 @@ def r2(betaColumn, betaTrueFalse):
 """    Produces the coefficient of determination (AKA 
 the correlation coefficient squared); gives the percentage of variation accounted for 
 by the relationship between the given variables
-
 >>>x=[3,4,5,6,7]
 >>>y=[9,10,13,12,18]
 >>>r2(x,y)
@@ -66,10 +65,10 @@ def auc(snpTrueFalse, scoreColumn):
 	return 1 - auc
 """    Returns the area under the reciever-operator curve for binary classification (i.e. true/false on whether
 a SNP was part of the known-truth list or not)
->>>
->>>
->>>
->>>
+>>>snpTF=[True,False,True,True,True,False,False,True,False,False,True,False]
+>>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
+>>>auc(snpTF,score)
+0.56944444
 """
 def tp(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
