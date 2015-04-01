@@ -5,7 +5,6 @@ Performance measures for testing applications in Winnow
 import numpy as np
 import pandas as pd
 from scipy import stats
-import doctest
 
 
 def rmse(betaColumn, betaTrueFalse):
@@ -111,7 +110,6 @@ def fp(snpTrueFalse, threshold, scoreColumn):
 >>>score=[0.003,0.65,0.004,0.006,0.078,0.003,0.0001,0.513,0.421,0.0081,0.043,0.98]
 2
 """
-
 def tn(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
 	for each in scoreColumn:
@@ -240,3 +238,6 @@ def youden(snpTrueFalse, threshold, scoreColumn):
 >>>youden(snpTF,threshold,score)
 0.17142857
 """
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

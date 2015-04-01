@@ -5,7 +5,7 @@ Functions for indentifying and using the command-line to execute Winnow for Pyth
 
 
 """Dependencies"""
-import getopt, sys, doctest
+import getopt, sys
 
 """Functions to be used later in the software"""
 # Prints introduction graphics for every time the software is run
@@ -169,3 +169,6 @@ def checkArgs():
 		severity = None
 
 	return folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper, severity
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

@@ -14,13 +14,13 @@ import doctest
 
 """Main function and execution"""
 def main():
-        """See docstrings in commandline.py and performetrics.py for additional information"""
+        """    See docstrings in commandline.py and performetrics.py for additional information"""
 	initializeGraphics()
 	folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper, severity = checkArgs()
 	appOutputList = checkList(getList(folder))
 	ktFile = loadKT(truth, kttypeseper)
 	""">>>usage()"""
-	"""Runs the following code if the known-truth file is in OTE format: only truth and effect"""
+	"""   Runs the following code if the known-truth file is in OTE format: only truth and effect"""
 	if kttype == "OTE":
 		acquiredData = loadFile(folder, appOutputList[0], seper)
 		snpColumnNo = acquiredData.header.index(snp)
