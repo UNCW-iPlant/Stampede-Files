@@ -9,6 +9,10 @@
 #SBATCH --mail-type=end # email me when the job finishes
 
 while read line
-do fastlmmc -verboseOutput -bfile $line -fileSim $line -pheno $line.fam_pheno.txt -simOut $line.sim.txt;
-fastlmmc -verboseOutput -bfile $line -sim $line.sim.txt -pheno $line.fam_pheno.txt -out $line.Results.txt;
-done < syn_names.txt
+do time fastlmmc -verboseOutput -bfile $line -fileSim $line -pheno $line.fam_pheno.txt -simOut $line.sim.txt;
+time fastlmmc -verboseOutput -bfile $line -sim $line.sim.txt -pheno $line.fam_pheno.txt -out $line.Results.txt;
+rm $line.bed $line.bim $line.fam
+mv $line.Results.txt $WORK/Syngenta_Results
+done < SynNames3.txt
+#Clean up remaining outputs
+rm *.out.txt
