@@ -17,4 +17,8 @@ rm $line.bed $line.bim $line.fam
 mv $line.Results.txt $WORK/Syngenta_Results
 done < SynNames3.txt
 #Clean up remaining outputs
+<<<<<<< HEAD
 rm *.out.txt
+=======
+rm *.out.txt
+>>>>>>> origin/master
