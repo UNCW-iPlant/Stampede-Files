@@ -1,5 +1,5 @@
 #!/bin/bash
-chmod +x ./bayesR
+chmod +x ./bayesRv2
 
 bedInput=${inputBED}
 bimInput=${inputBIM}
@@ -146,7 +146,30 @@ else
 	fi
 fi
 
+if [ -z ${blocksize} ]; then
+	echo "blocksize not set"
+else
+	echo "block size is set to ${blocksize}"
+	ARGS="${ARGS} -blocksize ${blocksize}"
+fi
+
+if [ -z ${nthreads} ]; then
+	echo "nthreads not set"
+else
+	echo "nthreads is set to ${nthreads}"
+	ARGS="${ARGS} -nthreads ${nthreads}"
+fi
+
+if [ -z ${shuffle} ]; then
+	echo "shuffle not set"
+else
+	if [ "${shuffle}" -eq 1 ]; then
+		echo "shuffle is set to true"
+		ARGS="${ARGS} -shuffle"
+	fi
+fi
+
 echo "Argument Line:"
-echo "./bayesR ${ARGS}"
-echo "Starting bayesR"
-./bayesR ${ARGS}
+echo "./bayesRv2 ${ARGS}"
+echo "Starting bayesRv2"
+./bayesRv2 ${ARGS}

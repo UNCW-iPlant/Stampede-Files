@@ -1,11 +1,11 @@
 {
 	"name": "bayesR",
-	"version": "0.75",
+	"version": "2.00",
 	"helpURI": "https://github.com/syntheke/bayesR",
 	"label": "bayesR",
-	"defaultQueue": "normal",
-	"defaultMaxRunTime": "24:00:00",
-	"defaultNodeCount": 1,
+	"defaultQueue": "development",
+	"defaultMaxRunTime": "02:00:00",
+	"defaultNodeCount": 4,
 	"defaultMemoryPerNode": 8,
 	"defaultProcessorsPerNode": 1,
 	"shortDescription": "Analyzing complex traits using a Bayesian mixture model.",
@@ -13,7 +13,7 @@
 	"executionSystem": "stampede-08262015-1627-swb5075",
 	"executionType": "HPC",
 	"parallelism": "SERIAL",
-	"deploymentPath": "swb5075/applications/bayesR-0.75",
+	"deploymentPath": "swb5075/applications/bayesR-2.00",
 	"deploymentSystem": "data.iplantcollaborative.org",
 	"templatePath": "wrapper.sh",
 	"testPath": "test.sh",
@@ -24,7 +24,7 @@
 	"inputs": [{
 		"id": "inputBED",
 		"value": {
-			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-0.75/test_data/simdata.bed",
+			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-2.00/test_data/simdata.bed",
 			"visible": true,
 			"required": true
 		},
@@ -42,7 +42,7 @@
 	}, {
 		"id": "inputBIM",
 		"value": {
-			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-0.75/test_data/simdata.bim",
+			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-2.00/test_data/simdata.bim",
 			"visible": true,
 			"required": true
 		},
@@ -61,7 +61,7 @@
 	}, {
 		"id": "inputFAM",
 		"value": {
-			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-0.75/test_data/simdata.fam",
+			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-2.00/test_data/simdata.fam",
 			"visible": true,
 			"required": true
 		},
@@ -438,6 +438,56 @@
 			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
+			]
+		}
+	}, {
+		"id": "blocksize",
+		"value": {
+			"default": 4,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Number of SNPs in block"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "nthreads",
+		"value": {
+			"default": 4,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Number of threads"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "shuffle",
+		"value": {
+			"default": false,
+			"type": "bool",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Permute order of blocks"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
 			]
 		}
 	}]
