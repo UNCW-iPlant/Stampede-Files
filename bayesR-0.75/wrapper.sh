@@ -100,6 +100,18 @@ else
 	ARGS="${ARGS} -ndist ${ndist}"
 fi
 
+if [ -z ${gpin} ]; then
+	echo "gpin not set"
+else
+	GPINS=""
+	for P in ${gpin}
+	do
+		GPINS="${GPINS}$P,"
+	done
+	ARGS="${ARGS} -gpin ${GPINS::-1}"
+	echo "gpins is set to ${GPINS::-1}"
+fi
+
 if [ -z ${seed} ]; then
 	echo "seed not set"
 else

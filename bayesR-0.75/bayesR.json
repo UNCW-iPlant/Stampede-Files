@@ -2,10 +2,14 @@
 	"name": "bayesR",
 	"version": "0.75",
 	"helpURI": "https://github.com/syntheke/bayesR",
-	"defaultQueue": "development",
-	"defaultMaxRunTime": "02:00:00",
-	"shortDescription": "bayesR",
-	"longDescription": "bayesR",
+	"label": "bayesR",
+	"defaultQueue": "normal",
+	"defaultMaxRunTime": "24:00:00",
+	"defaultNodeCount": 1,
+	"defaultMemoryPerNode": 8,
+	"defaultProcessorsPerNode": 1,
+	"shortDescription": "Analyzing complex traits using a Bayesian mixture model.",
+	"longDescription": "bayesR implements a Bayesian mixture model for the analysis of complex traits using Markov chain Monte Carlo. It simultaneously identifies associated SNPs, estimates the genetic varianece exomplained by SNPs, describes the genetic architecture of the trait, and predicts phenotype from SNP genotypes.",
 	"executionSystem": "stampede-08262015-1627-swb5075",
 	"executionType": "HPC",
 	"parallelism": "SERIAL",
@@ -14,21 +18,44 @@
 	"templatePath": "wrapper.sh",
 	"testPath": "test.sh",
 	"checkpointable": false,
-
+	"tags": [
+		"bayesR", "Bayesian mixture model", "Markov chain Monte Carlo", "MCMC"
+	],
 	"inputs": [{
 		"id": "inputBED",
 		"value": {
 			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-0.75/test_data/simdata.bed",
 			"visible": true,
 			"required": true
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "BED file name",
+			"description": "Specifies the BED file for the data group to be analyzed",
+			"showAttribute": true
 		}
-
 	}, {
 		"id": "inputBIM",
 		"value": {
 			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-0.75/test_data/simdata.bim",
 			"visible": true,
 			"required": true
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "BIM file name",
+			"description": "Specifies the BIM file for the data group to be analyzed",
+			"showAttribute": true
 		}
 
 	}, {
@@ -37,6 +64,17 @@
 			"default": "agave://data.iplantcollaborative.org/swb5075/applications/bayesR-0.75/test_data/simdata.fam",
 			"visible": true,
 			"required": true
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "FAM file name",
+			"description": "Specifies the FAM file for the data group to be analyzed",
+			"showAttribute": true
 		}
 
 	}, {
@@ -44,6 +82,17 @@
 		"value": {
 			"visible": true,
 			"required": false
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "Model file name",
+			"description": "Specifies the model file for the data group to be analyzed using prediction",
+			"showAttribute": true
 		}
 
 	}, {
@@ -51,6 +100,17 @@
 		"value": {
 			"visible": true,
 			"required": false
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "Frequency file name",
+			"description": "Specifies the frequency file for the data group to be analyzed using prediction",
+			"showAttribute": true
 		}
 
 	}, {
@@ -58,6 +118,17 @@
 		"value": {
 			"visible": true,
 			"required": false
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "Parameter file name",
+			"description": "Specifies the parameter file for the data group to be analyzed using prediction",
+			"showAttribute": true
 		}
 
 	}],
@@ -69,6 +140,17 @@
 			"type": "string",
 			"visible": true,
 			"required": true
+		},
+		"details":{
+			"label": "Ouput prefix",
+			"description": "The numerous output files will begin with this"
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"minCardinality":1,
+			"ontology": [
+				"xs:string"
+			]
 		}
 	}, {
 		"id": "n",
@@ -78,7 +160,12 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Phenotype column",
+			"description": "The column from the *.fam file where phenotypes are stored"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -91,7 +178,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "SNP variance prior"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:decimal"
 			]
@@ -104,7 +195,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Error variance prior"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:decimal"
 			]
@@ -117,7 +212,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Degrees of freedom Va"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:deciaml"
 			]
@@ -130,7 +229,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Degrees of freedom Ve"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:decimal"
 			]
@@ -143,7 +246,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Prior for Dirichlet"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -156,7 +263,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Number of SNPs in reduced update"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -169,7 +280,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Number of full cycles in reduced update"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -182,7 +297,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Thinning rate"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -195,10 +314,32 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Number of mixture distributions"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
+		}
+	}, {
+		"id": "gpin",
+		"value": {
+			"default": [0.0, 0.0001, 0.001, 0.01],
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Effect sizes of mixtures"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			],
+			"maxCardinality": -1
 		}
 	}, {
 		"id": "predict",
@@ -207,6 +348,14 @@
 			"type": "bool",
 			"visible": true,
 			"required": false
+		},
+		"details":{
+			"label": "Perform prediction flag"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
 		}
 	}, {
 		"id": "snpout",
@@ -215,6 +364,14 @@
 			"type": "bool",
 			"visible": true,
 			"required": false
+		},
+		"details":{
+			"label": "Output detailed SNP info"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
 		}
 	}, {
 		"id": "permute",
@@ -223,6 +380,14 @@
 			"type": "bool",
 			"visible": true,
 			"required": false
+		},
+		"details":{
+			"label": "Permute order of SNP"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
 		}
 	}, {
 		"id": "numberit",
@@ -232,7 +397,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Length of MCMC chain"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -245,7 +414,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Burnin steps"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
@@ -258,7 +431,11 @@
 			"visible": true,
 			"required": false
 		},
+		"details":{
+			"label": "Initial value for random number"
+		},
 		"semantics": {
+			"maxCardinality":1,
 			"ontology": [
 				"xs:int"
 			]
