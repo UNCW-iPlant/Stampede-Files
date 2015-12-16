@@ -3,11 +3,10 @@
 	"version": "2.00",
 	"helpURI": "https://github.com/syntheke/bayesR",
 	"label": "bayesR",
-	"defaultQueue": "development",
-	"defaultMaxRunTime": "02:00:00",
-	"defaultNodeCount": 4,
-	"defaultMemoryPerNode": 8,
-	"defaultProcessorsPerNode": 1,
+	"defaultQueue": "normal",
+	"defaultMaxRunTime": "12:00:00",
+	"defaultNodeCount": 1,
+	"defaultProcessorsPerNode": 11,
 	"shortDescription": "Analyzing complex traits using a Bayesian mixture model.",
 	"longDescription": "bayesR implements a Bayesian mixture model for the analysis of complex traits using Markov chain Monte Carlo. It simultaneously identifies associated SNPs, estimates the genetic varianece exomplained by SNPs, describes the genetic architecture of the trait, and predicts phenotype from SNP genotypes.",
 	"executionSystem": "stampede-08262015-1627-swb5075",
@@ -247,7 +246,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Prior for Dirichlet"
+			"label": "Prior for Dirichlet",
+			"desciption" : "The pseudo-observation for each class of the component mixture model."
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -264,7 +264,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Number of SNPs in reduced update"
+			"label": "Number of SNPs in reduced update",
+			"desciption" : "The number of SNPs with non-zero effects to sample within a cycle."
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -281,7 +282,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Number of full cycles in reduced update"
+			"label": "Reduced Update Full Cycle",
+			"desciption" : "The number of full cycles to complete before reducing to the msize paramter."
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -298,7 +300,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Thinning rate"
+			"label": "Thinning rate",
+			"desciption" : "Which sample to use for posterior inference. 10 will use every 10th sample. "
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -315,7 +318,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Number of mixture distributions"
+			"label": "Mixture distributions",
+			"desciption" : "The number of mixture distributions. Their variances' must be defined by the gpin paramter"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -332,7 +336,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Effect sizes of mixtures"
+			"label": "Effect sizes of mixtures",
+			"desciption" : "Defines the SNP variance of each component. The number of components is defined by the ndist paramter"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -350,7 +355,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Perform prediction flag"
+			"label": "Prediction flag",
+			"desciption" : "Perform prediction analysis"
 		},
 		"semantics": {
 			"ontology": [
@@ -366,7 +372,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Output detailed SNP info"
+			"label": "Output detailed SNP info flag",
+			"desciption" : "Output each MCMC iteration to a file"
 		},
 		"semantics": {
 			"ontology": [
@@ -382,7 +389,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Permute order of SNP"
+			"label": "Permute flag",
+			"desciption" : "Updates SNP effects in random order"
 		},
 		"semantics": {
 			"ontology": [
@@ -398,7 +406,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Length of MCMC chain"
+			"label": "Chain Length",
+			"desciption" : "Length of MCMC chain"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -415,7 +424,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Burnin steps"
+			"label": "Burnin steps",
+			"desciption" : "The amount of initial samples to discard"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -432,7 +442,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Initial value for random number"
+			"label": "Random Seed",
+			"desciption" : "Initial value for random number"
 		},
 		"semantics": {
 			"maxCardinality":1,
