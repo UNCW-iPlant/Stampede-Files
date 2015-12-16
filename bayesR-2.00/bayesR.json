@@ -6,7 +6,8 @@
 	"defaultQueue": "normal",
 	"defaultMaxRunTime": "12:00:00",
 	"defaultNodeCount": 1,
-	"defaultProcessorsPerNode": 11,
+	"defaultProcessorsPerNode": 1,
+	"defaultMemoryPerNode": 1,
 	"shortDescription": "Analyzing complex traits using a Bayesian mixture model.",
 	"longDescription": "bayesR implements a Bayesian mixture model for the analysis of complex traits using Markov chain Monte Carlo. It simultaneously identifies associated SNPs, estimates the genetic varianece exomplained by SNPs, describes the genetic architecture of the trait, and predicts phenotype from SNP genotypes.",
 	"executionSystem": "stampede-08262015-1627-swb5075",
@@ -91,7 +92,8 @@
 		"details":{
 			"label": "Model file name",
 			"description": "Specifies the model file for the data group to be analyzed using prediction",
-			"showAttribute": true
+			"showAttribute": true,
+			"attribute": "-model"
 		}
 
 	}, {
@@ -109,7 +111,8 @@
 		"details":{
 			"label": "Frequency file name",
 			"description": "Specifies the frequency file for the data group to be analyzed using prediction",
-			"showAttribute": true
+			"showAttribute": true,
+			"attribute": "-freq"
 		}
 
 	}, {
@@ -127,7 +130,8 @@
 		"details":{
 			"label": "Parameter file name",
 			"description": "Specifies the parameter file for the data group to be analyzed using prediction",
-			"showAttribute": true
+			"showAttribute": true,
+			"attribute": "-param"
 		}
 
 	}],
@@ -142,7 +146,8 @@
 		},
 		"details":{
 			"label": "Ouput prefix",
-			"description": "The numerous output files will begin with this"
+			"description": "The numerous output files will begin with this",
+			"attribute": "-out"
 		},
 		"semantics":{
 			"maxCardinality":1,
@@ -161,7 +166,8 @@
 		},
 		"details":{
 			"label": "Phenotype column",
-			"description": "The column from the *.fam file where phenotypes are stored"
+			"description": "The column from the *.fam file where phenotypes are stored",
+			"attribute": "-n"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -178,7 +184,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "SNP variance prior"
+			"label": "SNP variance prior",
+			"attribute": "-vara"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -195,7 +202,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Error variance prior"
+			"label": "Error variance prior",
+			"attribute": "-vare"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -212,7 +220,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Degrees of freedom Va"
+			"label": "Degrees of freedom Va",
+			"attribute": "-dfvara"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -229,7 +238,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Degrees of freedom Ve"
+			"label": "Degrees of freedom Ve",
+			"attribute": "-dfvare"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -247,7 +257,8 @@
 		},
 		"details":{
 			"label": "Prior for Dirichlet",
-			"desciption" : "The pseudo-observation for each class of the component mixture model."
+			"desciption" : "The pseudo-observation for each class of the component mixture model.",
+			"attribute": "-delta"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -265,7 +276,8 @@
 		},
 		"details":{
 			"label": "Number of SNPs in reduced update",
-			"desciption" : "The number of SNPs with non-zero effects to sample within a cycle."
+			"desciption" : "The number of SNPs with non-zero effects to sample within a cycle.",
+			"attribute": "-msize"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -283,7 +295,8 @@
 		},
 		"details":{
 			"label": "Reduced Update Full Cycle",
-			"desciption" : "The number of full cycles to complete before reducing to the msize paramter."
+			"desciption" : "The number of full cycles to complete before reducing to the msize paramter.",
+			"attribute": "-mrep"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -301,7 +314,8 @@
 		},
 		"details":{
 			"label": "Thinning rate",
-			"desciption" : "Which sample to use for posterior inference. 10 will use every 10th sample. "
+			"desciption" : "Which sample to use for posterior inference. 10 will use every 10th sample.",
+			"attribute": "-thin"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -319,7 +333,8 @@
 		},
 		"details":{
 			"label": "Mixture distributions",
-			"desciption" : "The number of mixture distributions. Their variances' must be defined by the gpin paramter"
+			"desciption" : "The number of mixture distributions. Their variances' must be defined by the gpin paramter",
+			"attribute": "-ndist"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -337,7 +352,8 @@
 		},
 		"details":{
 			"label": "Effect sizes of mixtures",
-			"desciption" : "Defines the SNP variance of each component. The number of components is defined by the ndist paramter"
+			"desciption" : "Defines the SNP variance of each component. The number of components is defined by the ndist paramter",
+			"attribute": "-gpin"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -356,7 +372,8 @@
 		},
 		"details":{
 			"label": "Prediction flag",
-			"desciption" : "Perform prediction analysis"
+			"desciption" : "Perform prediction analysis",
+			"attribute": "-predict"
 		},
 		"semantics": {
 			"ontology": [
@@ -373,7 +390,8 @@
 		},
 		"details":{
 			"label": "Output detailed SNP info flag",
-			"desciption" : "Output each MCMC iteration to a file"
+			"desciption" : "Output each MCMC iteration to a file",
+			"attribute": "-snpout"
 		},
 		"semantics": {
 			"ontology": [
@@ -390,7 +408,8 @@
 		},
 		"details":{
 			"label": "Permute flag",
-			"desciption" : "Updates SNP effects in random order"
+			"desciption" : "Updates SNP effects in random order",
+			"attribute": "-permute"
 		},
 		"semantics": {
 			"ontology": [
@@ -407,7 +426,8 @@
 		},
 		"details":{
 			"label": "Chain Length",
-			"desciption" : "Length of MCMC chain"
+			"desciption" : "Length of MCMC chain",
+			"attribute": "-numit"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -425,7 +445,8 @@
 		},
 		"details":{
 			"label": "Burnin steps",
-			"desciption" : "The amount of initial samples to discard"
+			"desciption" : "The amount of initial samples to discard",
+			"attribute": "-burnin"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -443,7 +464,8 @@
 		},
 		"details":{
 			"label": "Random Seed",
-			"desciption" : "Initial value for random number"
+			"desciption" : "Initial value for random number",
+			"attribute": "-seed"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -460,7 +482,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Number of SNPs in block"
+			"label": "Number of SNPs in block",
+			"attribute": "-blocksize"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -477,7 +500,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Number of threads"
+			"label": "Number of threads",
+			"attribute": "-nthreads"
 		},
 		"semantics": {
 			"maxCardinality":1,
@@ -494,7 +518,8 @@
 			"required": false
 		},
 		"details":{
-			"label": "Permute order of blocks"
+			"label": "Permute order of blocks",
+			"attribute": "-shuffle"
 		},
 		"semantics": {
 			"ontology": [
