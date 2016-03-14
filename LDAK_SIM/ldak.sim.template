@@ -1,0 +1,85 @@
+#!/bin/bash
+
+simOutputName=${simOutputName}
+phenOutputName=${phenoOutputName}
+numSNPS=${numSNPS}
+numSamples=${numSamples}
+minmaf=${minmaf}
+maxmaf=${maxmaf}
+numCausals=${numCausals}
+numPhenos=${numPhenos}
+heritability=${heritability}
+simArgs=""
+phenoArgs=""
+
+if [ -n "${simOutputName}" ]
+then
+	simArgs="${simArgs}--make-snps ${simOutputName} "
+fi
+
+if [ -n "${numSNPS}" ]
+then
+	simArgs="${simArgs}--num-snps ${numSNPS} "
+else
+	simArgs="${simArgs}--num-snps 1000000 "
+fi
+
+if [ -n "${numSamples}" ]
+then
+	simArgs="${simArgs}--num-samples ${numSamples} "
+else 
+	simArgs="${simArgs}--num-samples 1000 " 
+fi
+
+if [ -n "${minmaf}" ]
+then
+	simArgs="${simArgs}--minmaf ${minmaf} "
+fi
+
+if [ -n "${maxmaf}" ]
+then
+	simArgs="${simArgs}--maxmaf ${maxmaf} "
+fi
+
+if [ -z "${simArgs}" ]
+then
+	echo "No sim arguments given, user must specify arguments."
+else
+	echo "${simArgs}"
+	chmod 700 ldak.5.94
+	ldak.5.94 ${simArgs}
+fi
+
+if [ -n "${phenoOutputName}" ]
+then
+	phenoArgs="${phenoArgs}--make-phenos ${phenoOutputName} "
+fi
+
+if [ -n "${simOutputName}" ]
+
+then
+	phenoArgs="${phenoArgs}--bfile ${simOutputName} "
+fi
+
+if [ -n "${numCausals}" ]
+then
+	phenoArgs="${phenoArgs}--num-causals ${numCausals} "
+fi
+
+if [ -n "${numPhenos}" ]
+then
+	phenoArgs="${phenoArgs}--num-phenos ${numPhenos} "
+fi
+
+if [ -n "${heritability}" ]
+then
+	phenoArgs="${phenoArgs}--her ${heritability} "
+fi
+	 
+if [ -z "${phenoArgs}" ]
+then
+	echo "No Pheno arguments given, please specify pheno arguments if you want phenotype output"
+else
+	ldak.5.94 ${phenoArgs}
+	python make_ote.py ${phenoOutputName}.effects ${phenOutputName}_effects.ote
+fi 
