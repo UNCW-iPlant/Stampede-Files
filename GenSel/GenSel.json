@@ -1,0 +1,66 @@
+{
+  "name": "GenSel",
+  "version": "2.14",
+  "helpURI": "http://www.biomedcentral.com/content/supplementary/1471-2105-12-186-s1.pdf",
+  "label": "GenSel",
+  "defaultQueue": "normal",
+  "defaultNodeCount": 1,
+  "defaultMemoryPerNode": 4,
+  "defaultProcessorsPerNode": 1,
+  "defaultRequestedTime": "24:00:00",
+  "shortDescription": "A Program written in C++ that comprises a portfolio of alternative analyses relevant to Genomic Selection",
+  "longDescription": "GenSel is a computer program principally written by Rohan Fernando in C++ that comprises a portfolio of alternative analyses relevant to Genomic Selection. It requires three input files; two of which comprise Genotypic and Phenotypic data; and a command file that specifies relevant analytical options.",
+  "executionType": "HPC",
+  "parallelism": "SERIAL",
+  "deploymentSystem": "data.iplantcollaborative.org",
+  "inputs": [
+    {
+      "id": "Genotypic Data",
+      "details": {
+        "label": "Genotypic Data",
+        "description": "This file should contain the Genotypic data for GenSel to process.",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1
+      },
+      "value": {
+        "required": true,
+        "visible": true,
+        "order": 0
+      }
+    },
+    {
+     "id": "Phenotypic Data",
+      "details": {
+        "label": "Phenotypic Data",
+        "description": "This file should contain the Phenotypic Data for GenSel to process.",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1
+      },
+      "value": {
+        "required": true,
+        "visible": true,
+        "order": 0
+      }
+    },
+    {
+     "id": "Command File",
+      "details": {
+        "label": "Command File",
+        "description":"file that specifies relevant analytical options.",
+        "showAttribute": false
+      },
+      "semantics": {
+        "minCardinality": 1
+      },
+      "value": {
+        "required": true,
+        "visible": true,
+        "order": 0
+      }
+    }
+  ]
+}
