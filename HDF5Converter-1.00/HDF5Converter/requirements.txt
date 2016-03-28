@@ -1,0 +1,4 @@
+numexpr==2.5
+numpy==1.10.4
+tables==3.2.2
+wheel==0.24.0
