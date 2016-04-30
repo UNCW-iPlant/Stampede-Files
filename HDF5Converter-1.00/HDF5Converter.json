@@ -1,0 +1,119 @@
+{
+	"name": "HDF5Converter",
+	"version": "1.00",
+	"helpURI": "https://github.com/UNCW-iPlant/HDF5Converter",
+	"label": "HDF5Converter for Validate",
+	"defaultQueue": "normal",
+	"defaultMaxRunTime": "00:30:00",
+	"defaultNodeCount": 1,
+	"defaultProcessorsPerNode": 1,
+	"defaultMemoryPerNode": 1,
+	"shortDescription": "Converts files for use in Validate",
+	"longDescription": "Converts directory of PED/MAP files into a single HDF5 file",
+	"executionSystem": "stampede-08262015-1627-swb5075",
+	"executionType": "HPC",
+	"parallelism": "SERIAL",
+	"deploymentPath": "swb5075/applications/HDF5Converter-1.00",
+	"deploymentSystem": "data.iplantcollaborative.org",
+	"templatePath": "wrapper.sh",
+	"testPath": "test.sh",
+	"checkpointable": false,
+	"tags": [
+		"HDF5",
+		"validate",
+		"winnow"
+	],
+	"inputs": [{
+		"id": "hdf5File",
+		"value": {
+			"visible": true,
+			"required": false
+		},
+		"details": {
+			"label": "HDF5 File",
+			"description": "File to convert back into PED/MAP files",
+			"attribute": "--hdf"
+		},
+		"semantics": {
+			"maxCardinality": 1,
+			"fileTypes": [
+				"Text-0"
+			]
+		}
+	}],
+	"parameters": [{
+		"id": "mode",
+		"value": {
+			"default": "to",
+			"type": "string",
+			"visible": true,
+			"required": true
+		},
+		"details": {
+			"label": "Convertmode",
+			"description": "ConverttoorfromHDF5",
+			"attribute": "--mode"
+		},
+		"semantics": {
+			"maxCardinality": 1,
+			"minCardinality": 1,
+			"ontology": [
+				"xs:string"
+			]
+		}
+	}, {
+		"id": "directory",
+		"value": {
+			"type": "string",
+			"visible": true,
+			"required": true
+		},
+		"details": {
+			"label": "File directory",
+			"description": "DirectorycontainingPED/MAPfilestoconverttoHDF5ORoutputdirectorytostorePED/MAPfilesafterconvertingfromHDF5",
+			"attribute": "--dir"
+		},
+		"semantics": {
+			"maxCardinality": 1,
+			"minCardinality": 1,
+			"ontology": [
+				"xs:string"
+			]
+		}
+	}, {
+		"id": "output",
+		"value": {
+			"type": "string",
+			"visible": true,
+			"required": false
+		},
+		"details": {
+			"label": "HDF5 output file name",
+			"attribute": "--output"
+		},
+		"semantics": {
+			"maxCardinality": 1,
+			"ontology": [
+				"xs:string"
+			]
+		}
+	}, {
+		"id": "collength",
+		"value": {
+			"default": 16,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details": {
+			"label": "Column length",
+			"attribute": "--collength"
+		},
+		"semantics": {
+			"maxCardinality": 1,
+			"ontology": [
+				"xs:number"
+			]
+		}
+	}]
+}

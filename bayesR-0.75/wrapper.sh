@@ -13,7 +13,28 @@ ARGS="-out ${output}"
 if [ "$nameBED" = "$nameBIM" ] && [ "$nameBED" = "$nameFAM" ]; then
 	ARGS="${ARGS} -bfile $nameBED"
 else
-	echo "Input files need to have the same prefix"
+	echo “Input files need to have the same prefix”
+fi
+
+if [ -z "${model}" ]; then
+	echo "model not set"
+else
+	echo "model set to ${model}"
+	ARGS="${ARGS} -model ${model}"
+fi
+
+if [ -z "${freq}" ]; then
+        echo "freq not set"
+else
+        echo "freq set to ${freq}"
+        ARGS="${ARGS} -freq ${freq}"
+fi
+
+if [ -z "${param}" ]; then
+        echo "param not set"
+else
+        echo "param set to ${param}"
+        ARGS="${ARGS} -param ${param}"
 fi
 
 if [ -z "${n}" ]; then
