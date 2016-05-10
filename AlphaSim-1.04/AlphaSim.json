@@ -1,0 +1,42 @@
+{
+  "available" : true, 
+  "name": "buckAlphaSim",
+  "version": "1.04",
+  "helpURI": "http://www.alphagenes.roslin.ed.ac.uk/wp-content/uploads/Manual/index.html",
+  "label": "AlphaSim",
+  "defaultQueue": "normal",
+  "defaultNodeCount": 1,
+  "defaultMemoryPerNode": 4,
+  "defaultProcessorsPerNode": 1,
+  "defaultRequestedTime": "05:00:00",
+  "shortDescription": "Genetic data simulation, configured specifically to generate a large number of SNPs and a maize genotype",
+  "longDescription": "AlphaSim is a software package for simulating sequence, genotypic, phenotypic, and pedigree data in a wide range of population types (e.g., animal breeding, plant breeding, human genetics, natural populations).",
+  "executionType": "HPC",
+  "parallelism": "SERIAL",
+  "deploymentPath": "swb5075/applications/AlphaSim-1.04",
+  "deploymentSystem": "data.iplantcollaborative.org",
+  "executionSystem":"stampede-08262015-1627-swb5075",
+  "templatePath":"wrapper.sh",
+  "testPath" : "AlphaSimTest.sh",
+  "inputs": [
+    {
+        "id": "specificationFile",
+	"semantics": {
+		"fileTypes": [
+			"Text-0"
+		]
+      },
+      "value": {
+      	"default": "AlphaSimSpec.txt",
+        "required": true,
+        "visible": true
+      },
+      "details": {
+      	"label": "AlphaSim specification file",
+      	"Description": "Structured input specification file. Must be named AlphaSimSpec.txt",
+        "showAttribute": true
+      }
+    }
+  ],
+  "checkpointable": false
+}
