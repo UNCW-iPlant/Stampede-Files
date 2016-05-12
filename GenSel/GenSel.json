@@ -11,7 +11,7 @@
   "shortDescription": "A Program written in C++ that comprises a portfolio of alternative analyses relevant to Genomic Selection",
   "longDescription": "GenSel is a computer program principally written by Rohan Fernando in C++ that comprises a portfolio of alternative analyses relevant to Genomic Selection. It requires three input files; two of which comprise Genotypic and Phenotypic data; and a command file that specifies relevant analytical options.",
   "executionType": "HPC",
-  "exevutionSystem": "stampede-05122016-1041-jamesg",
+  "executionSystem": "stampede-05122016-1041-jamesg",
   "parallelism": "SERIAL",
   "deploymentSystem": "data.iplantcollaborative.org",
   "inputs": [
