@@ -16,7 +16,7 @@
   "deploymentSystem": "data.iplantcollaborative.org",
   "inputs": [
     {
-      "id": "Genotypic Data",
+      "id": "genotypic_data",
       "details": {
         "label": "Genotypic Data",
         "description": "This file should contain the Genotypic data for GenSel to process.",
@@ -32,7 +32,7 @@
       }
     },
     {
-     "id": "Phenotypic Data",
+     "id": "phenotypic_data",
       "details": {
         "label": "Phenotypic Data",
         "description": "This file should contain the Phenotypic Data for GenSel to process.",
