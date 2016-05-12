@@ -36,5 +36,14 @@ if [ ! -z $analysisType ];
 	echo 'varResidual	$varResidual' >> command_file.txt
 fi 
 
+tar -xvf GSrun4.55R.iPlant.tar
+export LD_LIBRARY_PATH=:`pwd`/GSrun4.55R/lib
+export PATH=$PATH:`pwd`/GSrun4.55R/bin
+export PATH=$PATH:`pwd`/GSrun4.55R/lib
+./bin/GenSel
+
+
+
 # Run the program with the created command file
+chmod +x GSrun4.55R/bin/GenSel
 GenSel command_file.txt
