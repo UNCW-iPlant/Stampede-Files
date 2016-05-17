@@ -29,6 +29,7 @@
         "minCardinality": 1
       },
       "value": {
+        "default":
         "required": true,
         "visible": true,
         "order": 0
@@ -45,6 +46,7 @@
         "minCardinality": 1
       },
       "value": {
+        "default":
         "required": true,
         "visible": true,
         "order": 0
@@ -61,6 +63,7 @@
         "minCardinality": 1
       },
       "value": {
+        "default":
         "required": true,
         "visible": true,
         "order": 0
