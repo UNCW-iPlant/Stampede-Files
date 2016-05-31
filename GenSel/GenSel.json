@@ -29,7 +29,7 @@
         "minCardinality": 1
       },
       "value": {
-        "default":
+        "default": "need correct data for default values",
         "required": true,
         "visible": true,
         "order": 0
@@ -46,7 +46,7 @@
         "minCardinality": 1
       },
       "value": {
-        "default":
+        "default": "need correct data for default values",
         "required": true,
         "visible": true,
         "order": 0
@@ -63,7 +63,7 @@
         "minCardinality": 1
       },
       "value": {
-        "default":
+        "default": "need correct data for default values",
         "required": true,
         "visible": true,
         "order": 0
